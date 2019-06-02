@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html lang="zh-hans">
+    <head>
+        <meta charset="UTF-8">
+        <title>我的订单</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <link href="{% static 'css/order.css' %}" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed">
+                <a href="javascript:;" class="aui-navBar-item">
+                    <a href={% url '主界面' %}><i class="icon icon-return"></i></a>
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title">我的订单</span>
+                </div>
+                <a href="javascript:;" class="aui-navBar-item">开发票</a>
+            </header>
+
+            <section class="aui-scrollView">
+                <div class="aui-order-title">
+                    <h2>已下达订单</h2>
+                        
+                            <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ starttime }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ ordernum }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ pilenum }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ actiontypenum }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ credit }}</p>
+                            </div>
+
+
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ '2018-09-04 15:25:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ 'NE20180902101258_03_00001032_2' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102501' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ '10' }}</p>
+                            </div><div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ '2018-09-05 00:00:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ 'NE20180905133842_05_00001025_3' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '10255' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ '10' }}</p>
+                            </div><div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ '2018-09-05 00:00:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ 'NE20180905142512_01_00001032_3' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '10251' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ '10' }}</p>
+                            </div><div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ '2018-09-07 10:35:32.686' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ 'NE20180907103532_07_00001025_3' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ '10' }}</p>
+                            </div><div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ '2018-09-07 11:24:45.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ 'NE20180907112445_06_00001025_3' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '10255' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ '10' }}</p>
+                            </div><div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">充电开始时间：{{ '2018-09-08 20:36:36.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单编号：{{ 'NE20180908203636_06_00001025_3' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '10257' }}</p>
+                                    <p class="aui-order-fl aui-order-address">订单行为编号：{{ '1' }}</p>
+                                    <p class="aui-order-fl aui-order-door">订单分值：{{ '-20' }}</p>
+                            </div>
+
+                </div>
+            </section>
+        </section>
+    </body>
+</html>

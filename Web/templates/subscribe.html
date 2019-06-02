@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<html lang="zh-hans">
+    <head>
+        <meta charset="UTF-8">
+        <title>我的订单</title>
+        <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport"/>
+        <meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <link href="{% static 'css/order.css' %}" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+        <section class="aui-flexView">
+            <header class="aui-navBar aui-navBar-fixed">
+                <a href="javascript:;" class="aui-navBar-item">
+                    <a href={% url '主界面' %}><i class="icon icon-return"></i></a>
+                </a>
+                <div class="aui-center">
+                    <span class="aui-center-title">我的预约</span>
+                </div>
+                <a href="javascript:;" class="aui-navBar-item">开发票</a>
+            </header>
+
+            <section class="aui-scrollView">
+                <div class="aui-order-title">
+                    <h2>已下达订单</h2>
+
+                            <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ starttime }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ ordernum }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ pilenum }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ actiontypenum }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ credit }}</p>
+                            </div>
+
+
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ '2018-09-11 16:56:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ 'NE20180911165147_01_00001025_6' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102501' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ '2' }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ '-30' }}</p>
+                            </div>
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ '2018-10-24 11:23:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ 'NE20181024111843_03_00001025_6' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102503' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ '10' }}</p>
+                            </div>
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ '2018-10-31 19:36:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ 'NE20181031190533_01_00001025_6' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102501' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ '10' }}</p>
+                            </div>
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ '2018-11-09 16:23:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ 'NE20181109161850_01_00001029_6' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102901' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ '2' }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ '-30'}}</p>
+                            </div>
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ '2018-11-16 15:00:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ 'NE20181116145508_04_00001029_6' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102904' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ '2' }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ '-30' }}</p>
+                            </div>
+
+                    <div class="aui-order-box">
+                                <a href="javascript:void(0);" class="aui-well-item">
+                                    <div class="aui-well-item-bd">
+                                        <h3>电动汽车普通充电</h3>
+                                    </div>
+                                    <span class="aui-well-item-fr">已完成</span>
+                                </a>
+                                    <p class="aui-order-fl aui-order-time">预约充电开始时间：{{ '2018-11-23 19:00:00.000' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约编号：{{ 'NE20181123170620_01_00001029_6' }}</p>
+                                    <p class="aui-order-fl aui-order-door">电桩编号：{{ '102901' }}</p>
+                                    <p class="aui-order-fl aui-order-address">预约状态：{{ '0' }}</p>
+                                    <p class="aui-order-fl aui-order-door">预约分值：{{ '10' }}</p>
+                            </div>
+
+                </div>
+            </section>
+        </section>
+    </body>
+</html>

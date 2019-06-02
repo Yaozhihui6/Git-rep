@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh=hans">
+{% load staticfiles %}
+<head>
+<meta charset="UTF-8">
+<title></title>
+
+<!--主要样式-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+
+<!--如不要字体标可以删除此css及字体↓，文中用到的也就一个小箭头-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/icon.css' %}" />
+
+
+</head>
+
+<body>
+{% if user.is_authenticated %}
+    <h1>欢迎您登录{{ user.username }}</h1>
+    <br>
+    <a href="{% url '登出' %}">登出</a>
+{% else %}
+    <h1>您还没有登录哦</h1>
+    <br>
+    <a href="{% url '注册' %}">立即注册</a>
+    <a href="{% url '注册' %}">立即登录</a>
+{% endif %}
+
+<div class="section section-mall">
+	<div class="section-title">
+		<h1>电动汽车充电信用系统</h1>
+		<h2>信用先行 充电有保障</h2>
+	</div>
+	<div class="section-wrapper">
+		<div class="mall-app">
+			<ul>
+				<li>
+					<div class="mall-app-card" target="_blank">
+						<div class="mall-app-card-bg" style="background-image: url({% static 'img/homepage-mall-enterprise-bg.jpg' %})">
+						</div>
+						<div class="mall-app-card-top">
+							<i style="background-image: url({% static 'img/homepage-mall-enterprise-logo.svg' %})"></i>
+							<h2>个人中心</h2>
+							<p>个人资料，完善资料可加信用分</p>
+						</div>
+						<div class="mall-app-card-bottom">
+							<ul>
+								<li>
+									<a href={% url '个人信息' %} target="_blank">个人信息查询</a>
+								</li>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="mall-app-card" target="_blank">
+						<div class="mall-app-card-bg" style="background-image: url({% static 'img/homepage-mall-solution-bg.jpg' %})">
+						</div>
+						<div class="mall-app-card-top">
+							<i style="background-image: url({% static 'img/homepage-mall-solution-logo.svg' %})"></i>
+							<h2>信用积分</h2>
+							<p>信用积分，随时记录您的充电行为</p>
+						</div>
+						<div class="mall-app-card-bottom">
+							<ul>
+								<li>
+									<a href={% url '轮盘' %} target="_blank">信用积分查询</a>
+								</li>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="mall-app-card" target="_blank">
+						<div class="mall-app-card-bg" style="background-image: url({% static 'img/homepage-mall-video-bg.jpg' %})">
+						</div>
+						<div class="mall-app-card-top">
+							<i style="background-image: url({% static 'img/homepage-mall-video-logo.svg' %})"></i>
+							<h2>预约记录</h2>
+							<p>预约记录，请您准时到达指定地点充电</p>
+						</div>
+						<div class="mall-app-card-bottom">
+							<ul>
+								<li>
+									<a href={% url '预约' %} target="_blank">预约记录查询</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="mall-app-card" target="_blank">
+						<div class="mall-app-card-bg" style="background-image: url({% static 'img/homepage-mall-station-bg.jpg' %})">
+						</div>
+						<div class="mall-app-card-top">
+							<i style="background-image: url({% static 'img/homepage-mall-station-logo.svg' %})"></i>
+							<h2>订单记录</h2>
+							<p>订单记录，记录您已完成订单</p>
+						</div>
+						<div class="mall-app-card-bottom">
+							<ul>
+								<li>
+									<a href={% url '订单' %} target="_blank">订单记录查询</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="section-bottom">
+		<div class="section-more-wrap">
+			<a href="#" target="_blank"> <span>更多应用</span><i class="cui-icon cui-icon-more"></i> </a>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
