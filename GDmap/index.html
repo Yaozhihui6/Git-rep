@@ -1,0 +1,447 @@
+<!doctype html>
+<!--加了车速 出现车辆的时间间隔的 随机值-->
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>轨迹回放3</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/>
+    <style>
+        html, body, #container {
+            height: 100%;
+            width: 100%;
+        }
+
+        #yibiaopan
+        {
+            position: absolute;
+            left: 10%;
+            bottom: 2%;
+            z-index: 2;
+        }
+        #yibiaopan_wait
+        {
+            position: absolute;
+            left: 50%;
+            bottom: 2%;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<div id="yibiaopan" style=" height:30%;width:40%; "> </div>
+<div id="yibiaopan_wait" style=" height:30%;width:40%; "> </div>
+
+
+<!--仪表盘-->
+<!-- ECharts单文件引入 -->
+<script type="text/javascript">
+    window.onresize = function(){
+        // window.location.reload();
+        this.yibiaoChart.resize();
+    }
+
+</script>
+<script src="js/echarts.min.js"></script>
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script type="text/javascript">
+    var yibiaoChart = echarts.init(document.getElementById('yibiaopan'));
+    var yibiaooption = {
+        backgroundColor: 'rgba(20, 40, 60, 0.7)',
+        title : {
+            text: '站点承受能力',
+            textStyle:{
+                //文字颜色
+                color:'#ffffff'
+            },
+            x:30,
+            y:25
+        },
+        tooltip : {
+            formatter: "{a} <br/>{c} {b}"
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: true},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        series : [
+            {
+                name:'承受能力',
+                type:'gauge',
+                z: 3,
+                min:0,
+                max:10,
+                radius : '60%',//缩放  大小
+                // splitNumber:1,
+                axisLine: {            // 坐标轴线
+                    show:true,
+                    lineStyle:{
+                        width: 10,
+                        opacity:1,
+                        color:[
+                            // [ 0.5, "#20AE51" ],//0-50%处的颜色
+                            // [ 0.7, "#FF9618" ],//51%-70%处的颜色
+                            // [ 0.9, "#FFED44" ],//70%-90%处的颜色
+                            // [ 1,"#DA462C" ]//90%-100%处的颜色
+                            [0, '#DB7930'],
+                            [1,'#13374F'],
+                        ],
+                    }
+                },
+                axisLabel:{
+                    show:false
+                },
+                axisTick: {            // 坐标轴小标记
+                    show:false
+                },
+                splitLine: {           // 分隔线
+                    show:false
+                },
+                title : {
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder',
+                        fontSize: 20,
+                        fontStyle: 'italic'
+                    }
+                },
+                detail : {
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder',
+                        fontSize:15
+                    }
+                },
+                itemStyle:{
+                    color: '#DB7930',
+                },
+                data:[{
+                    value: 0,
+                    label: {
+                        text: '站点承受能力',
+                        textStyle: {
+                            color : "#ffffff",
+                            fontSize: 12
+                        }
+                    }
+                }]
+            }
+        ]
+    };
+
+    yibiaooption.series[0].data[0].value = 0;
+    yibiaoChart.setOption(yibiaooption,true);
+    // setInterval(function (){
+    //     var zong = (Math.random()*10).toFixed(0) - 0;
+    //     yibiaooption.series[0].data[0].value = zong;
+    //     yibiaooption.series[0].axisLine.lineStyle.color[0] = [zong/10, '#DB7930'];
+    //     yibiaoChart.setOption(yibiaooption,true);
+    // },3000)
+</script>
+<script type="text/javascript">
+    var yibiaoChart_wait = echarts.init(document.getElementById('yibiaopan_wait'));
+    var yibiaooption_wait = {
+        backgroundColor: 'rgba(20, 40, 60, 0.7)',
+        title : {
+            text: '等待车辆数量',
+            textStyle:{
+                //文字颜色
+                color:'#ffffff'
+            },
+            x:30,
+            y:25
+        },
+        tooltip : {
+            formatter: "{a} <br/>{c} {b}"
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: true},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        series : [
+            {
+                name:'等待车辆数量',
+                type:'gauge',
+                z: 3,
+                min:0,
+                max:30,
+                radius : '60%',//缩放  大小
+                // splitNumber:1,
+                axisLine: {            // 坐标轴线
+                    show:true,
+                    lineStyle:{
+                        width: 10,
+                        opacity:1,
+                        color:[
+                            [0, '#DB7930'],
+                            [1,'#13374F'],
+                        ],
+                    }
+                },
+                axisLabel:{
+                    show:false
+                },
+                axisTick: {            // 坐标轴小标记
+                    show:false
+                },
+                splitLine: {           // 分隔线
+                    show:false
+                },
+                title : {
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder',
+                        fontSize: 20,
+                        fontStyle: 'italic'
+                    }
+                },
+                detail : {
+                    textStyle: {       // 其余属性默认使用全局文本样式，详见TEXTSTYLE
+                        fontWeight: 'bolder',
+                        fontSize:15
+                    }
+                },
+                itemStyle:{
+                    color: '#DB7930',
+                },
+                data:[{
+                    value: 0,
+                    label: {
+                        text: '站点承受能力',
+                        textStyle: {
+                            color : "#ffffff",
+                            fontSize: 12
+                        }
+                    }
+                }]
+            }
+        ]
+    };
+
+    yibiaooption_wait.series[0].data[0].value = 0;
+    yibiaoChart_wait.setOption(yibiaooption_wait,true);
+    // setInterval(function (){
+    //     var zong = (Math.random()*10).toFixed(0) - 0;
+    //     yibiaooption.series[0].data[0].value = zong;
+    //     yibiaooption.series[0].axisLine.lineStyle.color[0] = [zong/10, '#DB7930'];
+    //     yibiaoChart.setOption(yibiaooption,true);
+    // },3000)
+</script>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.14&key=ac94df604176a1619b35aa73a8bf08c7"></script>
+<script>
+
+
+    // map 属性
+    var map = new AMap.Map("container", {
+        viewMode:'3D',
+        resizeEnable: true,
+        center: [119.309071,26.101155],
+        pitch:70,
+        zoom:18,
+        mapStyle: 'amap://styles/6a0e5e75b4c1107374c504a6dd5023cc' //设置地图的显示样式
+    });
+    // 添加 3D 罗盘控制
+    AMap.plugin([
+        'AMap.ControlBar',
+    ], function(){
+        // 添加 3D 罗盘控制
+        map.addControl(new AMap.ControlBar());
+    });
+
+    var traffic = new AMap.TileLayer.Traffic({
+        'autoRefresh': true,     //是否自动刷新，默认为false
+        'interval': 180,         //刷新间隔，默认180s
+    });
+    map.add(traffic); //通过add方法添加图层
+    //map.remove(traffic) //需要时可以移除
+
+
+    var endUp = new AMap.Marker({
+        icon:'img/2.png',
+        offset:new AMap.Pixel(-20,-52),
+        position:[119.309608,26.102557],
+        map:map
+    });
+
+    var waitCount = 0;
+
+    var LngsUp = [119.311113,119.31196,119.311123,119.310142,119.312196,119.311172,119.311622,119.310195,119.308549,119.30828,119.309857];
+    var LatsUp = [26.103017,26.100382,26.101235,26.101268,26.099303,26.100078,26.09911,26.099573,26.10188,26.10373,26.105079];
+
+    var imgPaths = ["img/car.png","img/car1.png"];
+    function createNewPath() {
+        let marker3,lineArr3 = [];
+
+        let randomUpIndex = (Math.random()*LngsUp.length).toFixed(0) - 0;
+        let randomImgPathIndex = (Math.random()*(imgPaths.length - 1)).toFixed(0) - 0;
+        let randomSoc = 10 + parseInt((Math.random()*80).toFixed(0) - 0);
+        let randomSoh = 40 + parseInt((Math.random()*60).toFixed(0) - 0);
+        let randomCarSpeed = 30 + parseInt((Math.random() * 50 ).toFixed(0) - 0);
+        // up
+        ajax({
+            type:"get",
+            url:"http://restapi.amap.com/v3/direction/driving?key=6f926e3b2aae1c020788c5df23f46eca&origin="+LngsUp[randomUpIndex] + "," + LatsUp[randomUpIndex] + "" +"&destination=119.309608,26.102557&originid=&destinationid=&extensions=base&strategy=10&waypoints=&avoidpolygons=&avoidroad=",
+            dataType:"json",
+            success:function(responseData){
+                var re = "";
+                var steps = responseData.route.paths[0].steps;
+                for (let i = 0; i < steps.length; i++) {
+                    var points = steps[i].polyline.toString().split(";");
+                    for (let j = 0; j < points.length; j++) {
+                        var tmp = points[j].split(",");
+                        for (let k = 0; k < tmp.length; k++) {
+                            tmp[k] = parseFloat(tmp[k]);
+                        }
+                        lineArr3.push(tmp);
+                    }
+                    re += steps[i].polyline;
+                }
+                var polylineUp = new AMap.Polyline({
+                    map: map,
+                    path: lineArr3, // 路线是更改这里的
+                    showDir:true,
+                    strokeColor: "#28F",  //线颜色
+                    strokeOpacity: 0.5,     //线透明度
+                    strokeWeight: 6,      //线宽
+                    // strokeStyle: "solid"  //线样式
+                });
+                marker3 = new AMap.Marker({
+                    map: map,
+                    position: [LngsUp[randomUpIndex],LatsUp[randomUpIndex]],
+                    icon: imgPaths[randomImgPathIndex] ,
+                    offset: new AMap.Pixel(-26, -13),
+                    autoRotation: true,
+                    angle:-90
+                });
+                marker3.setTitle("车速:" + randomCarSpeed + "\n" + "SOC:" + randomSoc + "\n"
+                    + "SOH:" + randomSoh);
+
+                marker3.moveAlong(lineArr3, randomCarSpeed);
+                map.setFitView();
+
+                // 事件监听 逻辑控制
+                marker3.on('movealong', function (e) {
+                    let tmp_inStationCount = yibiaooption.series[0].data[0].value;
+                    if(tmp_inStationCount > 10){
+                        waitCount += 1;
+                        yibiaooption_wait.series[0].axisLine.lineStyle.color[0] = [ waitCount /10, '#DB7930'];
+                        yibiaoChart_wait.setOption(yibiaooption_wait,true);
+                        map.remove(marker3);
+                        map.remove(polylineUp);
+                    }else {
+
+                        if (waitCount > 0){
+                        //    有车辆在等待
+                            let tmp_remain = yibiaooption.series[0].max - yibiaooption.series[0].data[0].value;
+                            if (tmp_remain >= waitCount){
+                                //    空余数量大于等待数量
+                                yibiaooption.series[0].data[0].value += waitCount;
+                                waitCount = 0;
+                                yibiaooption_wait.series[0].axisLine.lineStyle.color[0] = [ waitCount /10, '#DB7930'];
+                                yibiaoChart_wait.setOption(yibiaooption_wait,true);
+                                yibiaooption.series[0].axisLine.lineStyle.color[0] = [ yibiaooption.series[0].data[0].value/10, '#DB7930'];
+                                yibiaoChart.setOption(yibiaooption,true);
+
+                                map.remove(marker3);
+                                map.remove(polylineUp);
+                            }else {
+                            //    空余数量少于等待数量
+                                yibiaooption.series[0].data[0].value = yibiaooption.series[0].max;
+                                waitCount -= tmp_remain;
+                                yibiaooption_wait.series[0].axisLine.lineStyle.color[0] = [ waitCount /10, '#DB7930'];
+                                yibiaoChart_wait.setOption(yibiaooption_wait,true);
+                                yibiaooption.series[0].axisLine.lineStyle.color[0] = [ yibiaooption.series[0].data[0].value/10, '#DB7930'];
+                                yibiaoChart.setOption(yibiaooption,true);
+                                map.remove(marker3);
+                                map.remove(polylineUp);
+                            }
+                        }else {
+                            yibiaooption.series[0].data[0].value += 1;
+                            yibiaooption.series[0].axisLine.lineStyle.color[0] = [ yibiaooption.series[0].data[0].value/10, '#DB7930'];
+                            yibiaoChart.setOption(yibiaooption,true);
+                            yibiaooption_wait.series[0].axisLine.lineStyle.color[0] = [ 0 /10, '#DB7930'];
+                            yibiaoChart_wait.setOption(yibiaooption_wait,true);
+                            map.remove(marker3);
+                            map.remove(polylineUp);
+                        }
+                    }
+
+                });
+                // alert(re);
+            }
+        });
+
+    }
+    function reduceNum(){
+        let randomToReduce = (Math.random()*yibiaooption.series[0].data[0].value).toFixed(0) - 0;
+        yibiaooption.series[0].data[0].value = yibiaooption.series[0].data[0].value - randomToReduce;
+        yibiaooption.series[0].axisLine.lineStyle.color[0] = [ yibiaooption.series[0].data[0].value/10, '#DB7930'];
+        yibiaoChart.setOption(yibiaooption,true);
+    }
+    createNewPath();
+
+
+    function controller(){
+
+        if(yibiaooption.series[0].data[0].value > 8){
+            let randomTimeGap = (Math.random()*5000).toFixed(0) - 0;
+            setTimeout("reduceNum()",randomTimeGap);
+        }else {
+            let randomTimeGap = (Math.random()*10000).toFixed(0) - 0;
+            setTimeout("createNewPath()",randomTimeGap);
+            // createNewPath();
+        }
+    }
+
+    setInterval("controller()",10000 );
+
+    function ajax(options){
+        options = options || {};
+        var method = (options.type || "GET").toUpperCase(),
+            url = options.url,
+            queryString = null;
+        if(!url)
+            return;
+        if(options.data){
+            queryString = [];
+            for(var attr in options.data){
+                queryString.push(attr + "=" +options.data[attr]);
+            }
+            queryString = queryString.join("&");
+        }
+        if(method === "GET" && queryString){
+            url += "?"+queryString;
+            queryString = "";
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open(method,url,true);
+        if(method === "POST")
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.send(queryString);
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState === 4){
+                if(xhr.status === 200){
+                    var data = xhr.responseText;
+                    if(options.dataType === "json")
+                        data = JSON.parse(data);
+                    options.success && options.success(data);
+                }else{
+                    options.error && options.error(xhr.status);
+                }
+            }
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
